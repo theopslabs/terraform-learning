@@ -283,7 +283,7 @@ module "logs_bucket" {
 }
 
 module "data_bucket" {
-  source = "./modules/sops-bucket"  # Note: typo - should be s3_bucket
+  source = "./modules/s3_bucket"
   bucket_name        = "my-data-bucket-${random_id.suffix.hex}"
   environment        = "dev"
   enable_versioning  = false
@@ -294,52 +294,6 @@ module "data_bucket" {
 
 resource "random_id" "suffix" {
   byte_length = 4
-}
-```
-
-> **Fix typo:** `source = "./modules/s3_bucket"` not `./modules/sops-bucket`
-
-### Corrected main.tf
-
-```hcl
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = "us-east-1"
-}
-
-resource "random_id" "suffix" {
-  byte_length = 4
-}
-
-# Use the S3 bucket module
-module "logs_bucket" {
-  source = "./modules/s3_bucket"
-  
-  bucket_name       = "my-logs-bucket-${random_id.suffix.hex}"
-  environment       = "dev"
-  enable_versioning = true
-  tags = {
-    Purpose = "Logs"
-  }
-}
-
-module "data_bucket" {
-  source = "./modules/s3_bucket"
-  
-  bucket_name       = "my-data-bucket-${random_id.suffix.hex}"
-  environment       = "dev"
-  enable_versioning = false
-  tags = {
-    Purpose = "Data"
-  }
 }
 ```
 

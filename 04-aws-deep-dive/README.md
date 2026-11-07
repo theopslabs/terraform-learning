@@ -6,6 +6,14 @@
 
 This module focuses on building real-world AWS infrastructure using Terraform. You'll learn to design and deploy production-like architectures including VPC networking, EC2 compute instances, S3 storage, RDS databases, and load balancing with auto-scaling. All examples are designed to be AWS Free Tier compatible where possible.
 
+## Visual Workflow Connection
+
+This module applies the workflow to a real AWS architecture. Each service adds nodes and dependencies to the graph: **VPC → subnets → security groups → EC2**, plus S3, RDS, load balancers, and Auto Scaling Groups.
+
+**Diagram focus:** a large dependency graph. Terraform creates independent branches in parallel and destroys them in reverse order.
+
+See the [Visual Workflow Guide](../resources/visual-workflow-guide.md#module-4-aws-deep-dive) for the diagram-first explanation and the Module 4 walkthrough.
+
 ## Learning Objectives
 
 By the end of this module, you will be able to:

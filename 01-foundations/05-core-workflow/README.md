@@ -5,6 +5,7 @@
 ## Table of Contents
 
 - [The Core Workflow](#the-core-workflow)
+- [Visual Workflow Diagram](#visual-workflow-diagram)
 - [terraform init](#terraform-init)
 - [terraform plan](#terraform-plan)
 - [terraform apply](#terraform-apply)
@@ -29,6 +30,24 @@ Terraform follows a simple, consistent workflow for managing infrastructure:
 ```
 
 This workflow is safe because you can always preview changes before applying them.
+
+## Visual Workflow Diagram
+
+![Terraform core workflow diagram](../../resources/terraform-workflow.png)
+
+*Top row: the five stages you run. Bottom panel: what Terraform compares during `plan` and how `apply` updates AWS and state.*
+
+Read the diagram from left to right:
+
+1. **Write** — your `.tf` files describe the desired state.
+2. **Init** — Terraform installs providers, modules, and backend configuration.
+3. **Plan** — Terraform compares desired state, recorded state, and the real cloud, then proposes actions.
+4. **Apply** — Terraform walks the dependency graph, calls provider APIs, and records the results.
+5. **Destroy** — Terraform removes managed resources in reverse dependency order.
+
+The blue dashed arrow is the important part: **apply updates state, and the next plan reads that state.** Terraform is a loop, not a one-way script.
+
+> **Visual learner?** The [Visual Workflow Guide](../../resources/visual-workflow-guide.md) walks through this diagram module by module and shows how the workflow grows from a single resource to a production CI/CD pipeline.
 
 ## terraform init
 

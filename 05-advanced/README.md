@@ -6,6 +6,14 @@
 
 This final module covers professional-grade Terraform practices used in production environments. You'll learn industry best practices, testing and validation strategies, CI/CD integration, secrets management, and how to structure multi-environment architectures at scale.
 
+## Visual Workflow Connection
+
+This module automates and governs the workflow. **Best practices** keep desired state clean, **testing** validates the configuration and plan, **CI/CD** automates plan and apply, **secrets management** protects state and plans, and **multi-environment architecture** runs separate loops for dev, staging, and production.
+
+**Diagram focus:** the five-stage loop wrapped in a review-and-approval pipeline, with remote state for each environment.
+
+See the [Visual Workflow Guide](../resources/visual-workflow-guide.md#module-5-advanced) for the diagram-first explanation and the Module 5 walkthrough.
+
 ## Learning Objectives
 
 By the end of this module, you will be able to:

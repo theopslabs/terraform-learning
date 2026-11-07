@@ -6,6 +6,14 @@
 
 This module takes your Terraform skills to the next level. You'll learn how to create reusable infrastructure with modules, manage multiple environments with workspaces, leverage built-in functions and expressions, master advanced CLI commands, and set up remote state with proper backend configuration and locking.
 
+## Visual Workflow Connection
+
+This module scales the workflow. **Modules** package reusable sections of the graph, **workspaces** separate state, **functions** compute values, the **CLI** inspects and repairs state, and **remote backends** move the state box to shared storage with locking.
+
+**Diagram focus:** a larger, modular dependency graph and a remote state box that a team can share safely.
+
+See the [Visual Workflow Guide](../resources/visual-workflow-guide.md#module-3-intermediate) for the diagram-first explanation and the Module 3 walkthrough.
+
 ## Learning Objectives
 
 By the end of this module, you will be able to:

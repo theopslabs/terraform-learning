@@ -156,66 +156,7 @@ resource "aws_instance" "web" {
   tags = {
     Name        = "DataSource-Demo"
     Environment = "Learning"
-    AccountID   = data.aws_ccaller_identity.current.account_id  # Note: typo in name
-  }
-}
-```
-
-> **Wait:** I made a typo in the resource tags above - `data.aws_ccaller_identity` should be `data.aws_caller_identity`. Let me fix that.
-
-Actually, let me write it correctly:
-
-### Corrected main.tf
-
-```hcl
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
-
-provider "aws" {
-  region = "us-east-1"
-}
-
-# Get current AWS account information
-data "aws_caller_identity" "current" {}
-
-# Get current AWS region
-data "aws_region" "current" {}
-
-# Get all available availability zones
-data "aws_availability_zones" "available" {
-  state = "available"
-}
-
-# Get latest Amazon Linux 2 AMI
-data "aws_ami" "amazon_linux" {
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["amzn2-ami-hvm-*-x86_64-gp2"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
-# Create an EC2 instance using the data sources
-resource "aws_instance" "web" {
-  ami           = data.aws_ami.amazon_linux.id
-  instance_type = "t2.micro"
-  
-  tags = {
-    Name        = "DataSource-Demo"
-    Environment = "Learning"
+    AccountID   = data.aws_caller_identity.current.account_id
   }
 }
 ```

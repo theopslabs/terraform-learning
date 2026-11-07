@@ -6,6 +6,14 @@
 
 This module builds on the foundations from Module 1. You'll learn how Terraform tracks infrastructure with state, how to make configurations reusable with variables and outputs, how to query existing resources with data sources, how to manage providers and versions, and how to create multiple resources efficiently with meta-arguments.
 
+## Visual Workflow Connection
+
+This module makes the workflow accurate. **State** is Terraform's memory, **variables and outputs** shape the desired state, **data sources** read the real cloud, **providers** connect Terraform to APIs, and **meta-arguments** change the dependency graph.
+
+**Diagram focus:** the three inputs to the plan engine and the graph that `apply` walks.
+
+See the [Visual Workflow Guide](../resources/visual-workflow-guide.md#module-2-core-concepts) for the diagram-first explanation and the Module 2 walkthrough.
+
 ## Learning Objectives
 
 By the end of this module, you will be able to:

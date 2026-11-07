@@ -1,3 +1,69 @@
+# Lesson 3: Functions and Expressions
+
+**Duration:** 90 minutes | **Level:** Intermediate
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Learning Objectives](#learning-objectives)
+- [String Functions](#string-functions)
+- [Collection Functions](#collection-functions)
+- [Date/Time Functions](#datetime-functions)
+- [File Functions](#file-functions)
+- [IP Network Functions](#ip-network-functions)
+- [Type Conversion Functions](#type-conversion-functions)
+- [Conditional Expressions](#conditional-expressions)
+- [For Expressions](#for-expressions)
+- [Splat Operator](#splat-operator)
+- [Hands-On: Functions and Expressions](#hands-on-functions-and-expressions)
+- [Best Practices](#best-practices)
+- [Summary](#summary)
+- [Next Steps](#next-steps)
+
+## Overview
+
+Functions and expressions let you compute values instead of hard-coding them. They are what turn a static configuration into a flexible, reusable one — building names, tags, subnet CIDRs, and instance counts from variables.
+
+Terraform has a large standard library of built-in functions. You cannot define your own functions, but you can combine these with expressions and `locals` to build almost any value you need. Use `terraform console` to experiment before wiring a function into a configuration.
+
+## Learning Objectives
+
+By the end of this lesson, you will be able to:
+
+- Use string, numeric, collection, date/time, file, IP network, and type conversion functions
+- Write conditional expressions with the ternary operator
+- Transform lists and maps with `for` expressions
+- Extract attributes from lists of resources with the splat operator
+- Store computed values in `locals` for reuse
+- Test functions interactively with `terraform console`
+
+## String Functions
+
+| Function | Description | Example | Result |
+|----------|-------------|---------|--------|
+| `lower()` | Convert to lowercase | `lower("HELLO")` | `"hello"` |
+| `upper()` | Convert to uppercase | `upper("hello")` | `"HELLO"` |
+| `title()` | Capitalize each word | `title("hello world")` | `"Hello World"` |
+| `replace()` | Replace substring | `replace("hello", "l", "L")` | `"heLLo"` |
+| `substr()` | Extract substring | `substr("hello", 1, 3)` | `"ell"` |
+| `join()` | Join list into string | `join("-", ["a", "b"])` | `"a-b"` |
+| `split()` | Split string into list | `split(",", "a,b,c")` | `["a", "b", "c"]` |
+| `trimspace()` | Remove leading/trailing whitespace | `trimspace("  hi  ")` | `"hi"` |
+| `format()` | Format string with placeholders | `format("%s-%d", "web", 1)` | `"web-1"` |
+| `formatlist()` | Format every element of a list | `formatlist("web-%s", ["a", "b"])` | `["web-a", "web-b"]` |
+| `strrev()` | Reverse a string | `strrev("abc")` | `"cba"` |
+| `chomp()` | Remove trailing newline | `chomp("hi\n")` | `"hi"` |
+
+## Collection Functions
+
+| Function | Description | Example | Result |
+|----------|-------------|---------|--------|
+| `length()` | Count elements | `length(["a", "b"])` | `2` |
+| `concat()` | Combine lists | `concat(["a"], ["b"])` | `["a", "b"]` |
+| `flatten()` | Flatten nested lists | `flatten([["a"], ["b"]])` | `["a", "b"]` |
+| `distinct()` | Remove duplicates | `distinct(["a", "a", "b"])` | `["a", "b"]` |
+| `slice()` | Take a range of elements | `slice(["a", "b", "c"], 1, 3)` | `["b", "c"]` |
+| `contains()` | Test membership | `contains(["a", "b"], "a")` | `true` |
 | `reverse()` | Reverse list | `reverse(["a", "b"])` | `["b", "a"]` |
 | `sort()` | Sort list | `sort(["b", "a"])` | `["a", "b"]` |
 | `keys()` | Get keys from map | `keys({a=1, b=2})` | `["a", "b"]` |

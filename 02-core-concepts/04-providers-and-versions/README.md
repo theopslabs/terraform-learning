@@ -2,7 +2,7 @@
 
 **Duration:** 60 minutes | **Level:** Beginner-Intermediate
 
-## Table of Table of Contents
+## Table of Contents
 
 - [What are Providers?](#what-are-providers)
 - [Provider Configuration](#provider-configuration)
@@ -224,22 +224,6 @@ resource "aws_s3_bucket" "west_bucket" {
 ```
 
 ### Step 3: Create outputs.tf
-
-```hcl
-output "east_bucket_name" {
-  value       = aws_s3_bucket.east_bucket.bucket
-  description = "Name of bucket in us-east-1"
-}
-
-output "west_bucket_name" {
-  value       = aws_s_s3_bucket.west_bucket.bucket
-  description = "Name of bucket in us-west-2"
-}
-```
-
-> **Fix typo:** `aws_s_s3_bucket` should be `aws_s3_bucket`
-
-### Corrected outputs.tf
 
 ```hcl
 output "east_bucket_name" {

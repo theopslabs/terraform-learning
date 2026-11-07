@@ -45,6 +45,8 @@ This course is divided into 5 modules, progressing from beginner to professional
 
 **Total:** 25 lessons with hands-on examples
 
+> 🖼️ **Visual learner?** Start with the [Visual Workflow Guide](./resources/visual-workflow-guide.md). It explains the core Terraform workflow diagram and shows how each module fits into the same loop.
+
 ## 🚀 How to Use This Course
 
 1. **Follow in order** - Each module builds on the previous one. Don't skip ahead!
@@ -70,6 +72,7 @@ This course is divided into 5 modules, progressing from beginner to professional
 - [Terraform Registry](https://registry.terraform.io/) - Providers and modules
 - [Course Glossary](./resources/glossary.md) - Terms and definitions
 - [Terraform Cheatsheet](./resources/cheatsheet.md) - Quick reference
+- [Visual Workflow Guide](./resources/visual-workflow-guide.md) - Diagram-first explanation of the workflow and how each module fits
 
 ## 🤝 Contributing & Feedback
 

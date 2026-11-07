@@ -6,6 +6,14 @@
 
 This module lays the groundwork for your Terraform journey. You'll learn what Infrastructure as Code is, why Terraform exists, how to set up your environment, and run your first Terraform commands.
 
+## Visual Workflow Connection
+
+This module teaches the complete loop: **Write → Init → Plan → Apply → Destroy**. By the end, you will have run every stage against a real AWS resource.
+
+**Diagram focus:** all five workflow cards, plus the state box that remembers what was created.
+
+See the [Visual Workflow Guide](../resources/visual-workflow-guide.md#module-1-foundations) for the diagram-first explanation and the Module 1 walkthrough.
+
 ## Learning Objectives
 
 By the end of this module, you will be able to:

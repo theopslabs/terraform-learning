@@ -251,14 +251,6 @@ resource "aws_security_group" "app" {
     security_groups = [aws_security_group.web.id]
   }
   
-  ingress {
-    description     = "SSH from bastion (optional)
-    from_port       = 22
-    to_port         = 22
-    protocol        = "tcp"
-    security_groups = [aws_security_group.bastion.id]
-  }
-  
   egress {
     from_port   = 0
     to_port     = 0
@@ -427,7 +419,7 @@ resource "aws_eip" "nat" {
   domain = "vpc"
   
   tags = {
-    Name        = "${var.project_name-nat-eip}"
+    Name        = "${var.project_name}-nat-eip"
     Environment = var.environment
   }
   
@@ -486,7 +478,7 @@ resource "aws_route_table_association" "public" {
 
 resource "aws_route_table_association" "private_app" {
   count          = length(aws_subnet.private_app)
-  subnet_id      = aws_subpen.private_app[count.index].id
+  subnet_id      = aws_subnet.private_app[count.index].id
   route_table_id = aws_route_table.private.id
 }
 
@@ -581,33 +573,6 @@ resource "aws_security_group" "db" {
     Name        = "${var.project_name}-db-sg"
     Environment = var.environment
   }
-}
-```
-
-> **Fix typos:** `var.project_name-nat-eip` → `var.project_name}-nat-eip`, `aws_subpen` → `aws_subnet`
-
-### Corrected main.tf (key fixes)
-
-```hcl
-# Elastic IP for NAT Gateway
-resource "aws_eip" "nat" {
-  domain = "vpc"
-  
-  tags = {
-    Name        = "${var.project_name}-nat-eip"
-    Environment = var.environment
-  }
-  
-  depends_on = [aws_internet_gateway.main]
-}
-```
-
-And fix the route table association:
-```hcl
-resource "aws_route_table_association" "private_app" {
-  count          = length(aws_subnet.private_app)
-  subnet_id      = aws_subnet.private_app[count.index].id
-  route_table_id = aws_route_table.private.id
 }
 ```
 
