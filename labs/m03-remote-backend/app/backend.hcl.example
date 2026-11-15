@@ -1,0 +1,6 @@
+# Copy to backend.hcl and replace the bucket with the bootstrap output.
+bucket       = "replace-with-state-bucket-name"
+key          = "labs/remote-backend/terraform.tfstate"
+region       = "us-east-1"
+use_lockfile = true
+encrypt      = true

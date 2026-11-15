@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and adjust as needed.
+aws_region    = "us-east-1"
+project_name  = "terraform-learning"
+environment   = "dev"
+replica_count = 2
+
+app_config = {
+  log_level    = "debug"
+  feature_flag = "true"
+  page_size    = "50"
+}

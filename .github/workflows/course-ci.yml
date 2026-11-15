@@ -1,0 +1,82 @@
+name: Course CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  markdown:
+    name: Markdown and links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --offline
+            --include-fragments
+            --no-progress
+            './**/*.md'
+          fail: true
+
+      - name: Lint markdown
+        uses: DavidAnson/markdownlint-cli2-action@v19
+        with:
+          globs: |
+            README.md
+            labs/**/*.md
+            capstone/**/*.md
+            resources/**/*.md
+            solutions/**/*.md
+
+  terraform:
+    name: Terraform format and validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.17.2
+
+      - name: Check formatting
+        run: terraform fmt -check -recursive labs capstone solutions resources/lab-template
+
+      - name: Validate every configuration
+        run: ./scripts/validate-all.sh
+
+      - name: Run native tests
+        run: |
+          for dir in $(find . -name '*.tftest.hcl' -printf '%h\n' | sort -u); do
+            echo "::group::terraform test in $dir"
+            (cd "$dir" && terraform init -backend=false -input=false && terraform test)
+            echo "::endgroup::"
+          done
+
+  content:
+    name: Version and secret guardrails
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Reject stale version pins
+        run: |
+          set -euo pipefail
+          if grep -rn --include='*.md' --include='*.tf' -E '~> 5\.0|1\.9\.8' .; then
+            echo "::error::Found stale Terraform or provider version pins."
+            exit 1
+          fi
+
+      - name: Reject obvious hardcoded secrets
+        run: |
+          set -euo pipefail
+          if grep -rn --include='*.tf' -E '(password|secret_key|access_key)[[:space:]]*=[[:space:]]*"[^"$]{8,}"' labs capstone solutions; then
+            echo "::error::Possible hardcoded secret found."
+            exit 1
+          fi

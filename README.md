@@ -26,10 +26,11 @@ Before starting this course, you should have:
 
 ## ⚠️ Important Notes About Costs
 
-- **AWS Free Tier**: Most examples in this course are designed to work within AWS Free Tier limits
+- **AWS Free Tier has changed**: Accounts created on or after **15 July 2025** receive up to **$200 in credits** and a **6-month free plan**, not the traditional 12-month allowance. Older accounts may still have 12 months. Always check the [current Free Tier page](https://aws.amazon.com/free/).
+- **Set a budget first**: Create an [AWS Budget](https://console.aws.amazon.com/billing/home#/budgets) before running any lab that creates paid resources.
 - **Always destroy resources**: After completing exercises, run `terraform destroy` to avoid unexpected charges
 - **Monitor costs**: Check your [AWS Billing Dashboard](https://console.aws.amazon.com/billing/) regularly
-- **Some resources may incur costs**: NAT Gateways, certain data transfer, or resources outside Free Tier may have charges. We'll call these out explicitly
+- **Some resources may incur costs**: NAT Gateways, ALBs, RDS instances, and certain data transfer are not free. Every lab marks its cost explicitly
 
 ## 🗂️ Course Structure
 
@@ -44,6 +45,8 @@ This course is divided into 5 modules, progressing from beginner to professional
 | [05](./05-advanced/) | **Advanced & Professional** | Best practices, testing, CI/CD, secrets, multi-env architecture | 5 |
 
 **Total:** 25 lessons with hands-on examples
+
+> 🧪 **Hands-on labs:** The [labs directory](./labs/README.md) contains runnable configurations for every module, plus a full three-tier [capstone project](./capstone/README.md). Labs are free by default; paid labs are clearly marked.
 
 > 🖼️ **Visual learner?** Start with the [Visual Workflow Guide](./resources/visual-workflow-guide.md). It explains the core Terraform workflow diagram and shows how each module fits into the same loop.
 
@@ -65,6 +68,8 @@ This course is divided into 5 modules, progressing from beginner to professional
 | [VS Code](https://code.visualstudio.com/) | Code editor | Recommended |
 | [Terraform Extension](https://marketplace.visualstudio.com/items?itemName=HashiCorp.terraform) | VS Code syntax highlighting | Recommended |
 
+**Supported versions:** Terraform **1.11+** (tested on 1.17.2) and AWS provider **6.x**. See [Supported Versions](./resources/versions.md) for details and upgrade notes.
+
 ## 📚 Additional Resources
 
 - [Terraform Documentation](https://developer.hashicorp.com/terraform/docs) - Official docs
@@ -72,6 +77,9 @@ This course is divided into 5 modules, progressing from beginner to professional
 - [Terraform Registry](https://registry.terraform.io/) - Providers and modules
 - [Course Glossary](./resources/glossary.md) - Terms and definitions
 - [Terraform Cheatsheet](./resources/cheatsheet.md) - Quick reference
+- [Supported Versions](./resources/versions.md) - Tested versions, constraints, and upgrade policy
+- [Hands-On Labs](./labs/README.md) - Runnable configurations for every module
+- [Capstone Project](./capstone/README.md) - Full three-tier production-style build
 - [Visual Workflow Guide](./resources/visual-workflow-guide.md) - Diagram-first explanation of the workflow and how each module fits
 
 ## 🤝 Contributing & Feedback
@@ -80,7 +88,7 @@ This is a learning resource. If you find errors, have suggestions, or want to im
 
 ## 📄 License
 
-This course is provided for educational purposes. Use at your own risk.
+This course is released under the [MIT License](./LICENSE). Use it, remix it, and share it. Infrastructure you create with it is your responsibility — always review plans and destroy paid resources.
 
 ---
 

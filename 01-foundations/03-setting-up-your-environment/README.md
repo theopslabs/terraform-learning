@@ -21,7 +21,7 @@ Before we begin, ensure you have:
 - [ ] A computer with internet access (Linux, macOS, or Windows)
 - [ ] Administrator/sudo privileges to install software
 - [ ] A valid email address for AWS account creation
-- [ ] Credit/debit card for AWS account (won't be charged if using Free Tier properly)
+- [ ] Credit/debit card for AWS account (see the Free Tier note below)
 
 ## AWS Account Setup
 
@@ -33,7 +33,7 @@ If you don't have an AWS account yet:
 4. Choose the **Basic Support - Free** plan
 5. Complete setup and sign in to [AWS Console](https://console.aws.amazon.com/)
 
-> **Note:** AWS Free Tier is free for 12 months for many services, and some services are always free. We'll stick to Free Tier eligible resources in this course.
+> **Note:** AWS changed the Free Tier for accounts created on or after **15 July 2025**. New accounts receive up to **$200 in credits** and a **6-month free plan**; older accounts may still have the 12-month allowance. Check the [current Free Tier page](https://aws.amazon.com/free/) and create an [AWS Budget](https://console.aws.amazon.com/billing/home#/budgets) before running paid labs.
 
 ## Installing AWS CLI
 
@@ -91,11 +91,14 @@ sudo apt update && sudo apt install terraform
 ### For Linux (Manual Install)
 
 ```bash
-# Download latest version (check https://developer.hashicorp.com/terraform/install for current version)
-wget https://releases.hashicorp.com/terraform/1.9.8/terraform_1.9.8_linux_amd64.zip
-unzip terraform_1.9.8_linux_amd64.zip
+# Set the version you want. The course is tested on 1.17.2.
+TF_VERSION="1.17.2"
+wget "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip"
+unzip "terraform_${TF_VERSION}_linux_amd64.zip"
 sudo mv terraform /usr/local/bin/
 ```
+
+> **Tip:** A version manager such as [mise](https://mise.jdx.dev/), [tfenv](https://github.com/tfutils/tfenv), or [tenv](https://github.com/tofuutils/tenv) makes it easy to switch Terraform versions per project. The course requires **1.11 or newer**; see [Supported Versions](../../resources/versions.md).
 
 ### For macOS
 
@@ -124,7 +127,7 @@ Option 3: Manual - Download from [Terraform downloads page](https://developer.ha
 terraform version
 ```
 
-Expected output: `Terraform v1.9.x` (or newer)
+Expected output: `Terraform v1.17.x` (or newer, but at least v1.11)
 
 ## Configuring AWS Credentials
 

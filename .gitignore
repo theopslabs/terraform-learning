@@ -1,8 +1,28 @@
-terraform-outline.html
+# Local Terraform artifacts
 *.tfstate
-*.tfstate.backup
+*.tfstate.*
 .terraform/
-.terraform.lock.hcl
+.terraform.tfstate.lock.info
+crash.log
+crash.*.log
+*.tfplan
+tfplan
+
+# Local variable files that may contain secrets
 terraform.tfvars
 terraform.tfvars.json
-terraform.tfplan
+*.auto.tfvars
+*.auto.tfvars.json
+
+# Keep examples and non-secret defaults in version control
+!*.tfvars.example
+!terraform.tfvars.example
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Generated outlines
+terraform-outline.html

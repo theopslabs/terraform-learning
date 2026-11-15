@@ -1,0 +1,7 @@
+# Copy to terraform.tfvars and adjust as needed.
+aws_region     = "us-east-1"
+project_name   = "terraform-learning"
+db_name        = "appdb"
+username       = "appadmin"
+instance_class = "db.t3.micro"
+engine_version = "8.0"

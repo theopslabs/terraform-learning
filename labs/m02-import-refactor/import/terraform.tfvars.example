@@ -1,0 +1,3 @@
+# Set this to a bucket that already exists in your account.
+existing_bucket_name = "replace-with-an-existing-bucket"
+aws_region           = "us-east-1"
